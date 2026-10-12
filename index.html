@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>REMI WhatsApp Connection</title>
+</head>
+
+<body style="text-align:center; padding:60px; font-family:Arial;">
+
+  <h2>Connect REMI WhatsApp Business</h2>
+
+  <button onclick="launchWhatsAppSignup()"
+    style="background:#1877f2; border:0; border-radius:6px; color:white; padding:14px 24px; font-size:16px; cursor:pointer;">
+    Connect WhatsApp Business
+  </button>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '1409988463910255',
+        cookie: true,
+        xfbml: true,
+        version: 'v24.0'
+      });
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function launchWhatsAppSignup() {
+      FB.login(function(response) {
+        console.log('Embedded Signup response:', response);
+      }, {
+        config_id: '28597851773209675',
+        response_type: 'code',
+        override_default_response_type: true,
+        extras: {
+          setup: {},
+          featureType: 'whatsapp_business_app_onboarding',
+          sessionInfoVersion: '3'
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
